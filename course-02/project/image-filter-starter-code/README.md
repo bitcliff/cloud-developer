@@ -1,3 +1,9 @@
+#Project submission:
+
+Elastic Beanstalk URL: http://image-filter-atilgan-dev.us-east-1.elasticbeanstalk.com/
+There is a problem with this image: https://upload.wikimedia.org/wikipedia/commons/b/bd/Golden_tabby_and_white_kitten_n01.jpg
+As mentionend in this topic (https://knowledge.udacity.com/questions/742363) you can use this URL: https://www.cdc.gov/healthypets/images/pets/cute-dog-headshot.jpg
+
 # Udagram Image Filtering Microservice
 
 Udagram is a simple cloud application developed alongside the Udacity Cloud Engineering Nanodegree. It allows users to register and log into a web client, post photos to the feed, and process photos using an image filtering microservice.
