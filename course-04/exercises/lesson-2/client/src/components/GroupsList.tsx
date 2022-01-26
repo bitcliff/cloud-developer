@@ -29,7 +29,11 @@ export class GroupsList extends React.PureComponent<GroupsListProps, GroupsListS
         groups
       })
     } catch (e) {
-      alert(`Failed to fetch groups: ${e.message}`)
+      let errorMessage = "Failed to do something exceptional";
+      if (e instanceof Error) {
+        errorMessage = e.message;
+      }
+      alert(`Failed to fetch groups: ${errorMessage}`)
     }
   }
 
