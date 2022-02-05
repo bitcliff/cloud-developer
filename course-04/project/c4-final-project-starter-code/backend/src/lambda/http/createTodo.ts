@@ -7,7 +7,7 @@ import { getUserId } from '../utils';
 import { createTodoItem } from '../../helpers/todos'
 import { createLogger } from '../../utils/logger'
 
-const logger = createLogger('createTodos')
+const logger = createLogger('createTodo')
 
 export const handler = middy(
   async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
