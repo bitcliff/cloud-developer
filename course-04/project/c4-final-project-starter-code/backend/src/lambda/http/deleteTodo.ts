@@ -4,15 +4,25 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
 import * as middy from 'middy'
 import { cors, httpErrorHandler } from 'middy/middlewares'
 
-import { deleteTodo } from '../../businessLogic/todos'
+import { deleteTodoItem } from '../../helpers/todos'
 import { getUserId } from '../utils'
+import { createLogger } from '../../utils/logger'
+
+const logger = createLogger('deleteTodo')
 
 export const handler = middy(
   async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
+    // DONE: Remove a TODO item by id
+    logger.info('Processing event: ', { event: event });
     const todoId = event.pathParameters.todoId
-    // TODO: Remove a TODO item by id
-    
-    return undefined
+    const userId = getUserId(event);
+    logger.info(`deleting todo item ${todoId} for user ${userId}`);
+    await deleteTodoItem(todoId, userId);
+    logger.info(`deleted todo item ${todoId} for user ${userId}`);
+    return {
+      statusCode: 204,
+      body: ''
+    };
   }
 )
 
