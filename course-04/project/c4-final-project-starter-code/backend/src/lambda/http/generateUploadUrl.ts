@@ -19,7 +19,7 @@ export const handler = middy(
     return {
       statusCode: 200,
       body:  JSON.stringify({
-        presignedUrl: presignedUrl,
+        uploadUrl: presignedUrl,
       })
     }
   }
