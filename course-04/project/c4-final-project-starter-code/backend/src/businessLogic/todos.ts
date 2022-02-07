@@ -1,21 +1,22 @@
-import { TodosAccess } from './todosAcess'
-import { getUploadUrl, getAttachmentUrl } from './attachmentUtils';
+import { TodosAccess } from '../dataLayer/todosAcess'
 import { TodoItem } from '../models/TodoItem'
 import { CreateTodoRequest } from '../requests/CreateTodoRequest'
 import { UpdateTodoRequest } from '../requests/UpdateTodoRequest'
 import { createLogger } from '../utils/logger'
 import * as uuid from 'uuid'
 import { TodoUpdate } from '../models/TodoUpdate';
+import { FileAccess } from '../dataLayer/fileAccess';
 
 // DONE: Implement businessLogic
 const logger = createLogger('Todos')
 const todosAccess = new TodosAccess();
+const fileAccess = new FileAccess();
 
 export async function createAttachmentPresignedUrl(userId: string, todoId: string): Promise<String> {
-    const uploadUrl = getUploadUrl(todoId);
-    logger.info('uploadUrl is ', uploadUrl)
-    const attachmentUrl = getAttachmentUrl(todoId);
-    logger.info('attachmentUrl is ', attachmentUrl)
+    const uploadUrl = await fileAccess.getUploadUrl(todoId);
+    logger.info(`upload url is ${uploadUrl}`)
+    const attachmentUrl = fileAccess.getAttachmentUrl(todoId);
+    logger.info(`attachmentUrl is ${attachmentUrl}`)
     await todosAccess.updateAttachmentUrl(userId, todoId, attachmentUrl);
     logger.info(`updated attachment url for todo ${todoId} of user ${userId}`)
     return uploadUrl;
